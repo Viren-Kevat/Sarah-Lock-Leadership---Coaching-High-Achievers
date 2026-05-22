@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Request a Strategy Call | Sarah Lock</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&amp;family=Libre+Caslon+Text:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Custom Input Styles */
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        select {
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%231A1A1A%22%20stroke-width%3D%221%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+            padding-right: 32px;
+        }
+
+        /* Custom Radio */
+        input[type="radio"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 1px solid var(--color-ink-black);
+            border-radius: 50%;
+            display: inline-grid;
+            place-content: center;
+            margin-right: 8px;
+            cursor: pointer;
+            background-color: transparent;
+            accent-color: transparent;
+            outline: none;
+            box-shadow: none;
+            vertical-align: middle;
+        }
+
+        input[type="radio"]::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out, background-color 120ms ease-in-out;
+            background-color: var(--color-ink-black);
+            display: block;
+        }
+
+        input[type="radio"]:checked::before {
+            transform: scale(1);
+        }
+
+        /* Remove focus glow for radios */
+        input[type="radio"]:focus,
+        input[type="radio"]:focus-visible {
+            outline: none !important;
+            outline-offset: 0 !important;
+            box-shadow: none !important;
+            --tw-ring-shadow: none !important;
+            --tw-ring-color: transparent !important;
+            --tw-ring-offset-shadow: none !important;
+        }
+
+        input[type='checkbox']:checked,
+        input[type='radio']:checked {
+            background-color: transparent !important;
+            border-color: var(--color-ink-black) !important;
+            background-image: none !important;
+            background-size: auto !important;
+        }
+
+
+        /* Focus Utilities */
+        .input-minimal:focus {
+            outline: none;
+            border-bottom-color: var(--color-ink-black);
+        }
+
+        /* Remove native blue focus glow and ensure no box-shadow */
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border-bottom-color: var(--color-ink-black);
+        }
+
+        /* Darker placeholder color */
+        .input-minimal::placeholder,
+        input::placeholder,
+        textarea::placeholder {
+            color: rgba(26, 26, 26, 0.55) !important;
+            opacity: 1;
+            /* ensure consistent opacity across browsers */
+        }
+
+        /* Fade Animation */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-background": "#1a1c1b",
+                        "warm-taupe": "#8C867E",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "surface-tint": "#5f5e5e",
+                        "inverse-surface": "#2f3130",
+                        "secondary-container": "#e6ded5",
+                        "on-secondary-container": "#67625a",
+                        "on-surface": "#1a1c1b",
+                        "background": "#f9f9f7",
+                        "on-tertiary-container": "#788595",
+                        "secondary": "#635e56",
+                        "inverse-primary": "#c8c6c5",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#101d29",
+                        "on-primary-container": "#858383",
+                        "surface-dim": "#dadad8",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f4f4f2",
+                        "tertiary": "#000000",
+                        "surface-bright": "#f9f9f7",
+                        "on-primary-fixed-variant": "#474746",
+                        "secondary-fixed-dim": "#cdc5bc",
+                        "surface-container-highest": "#e2e3e1",
+                        "tertiary-fixed": "#d6e4f5",
+                        "slate-blue": "#5E6B7A",
+                        "primary-fixed": "#e5e2e1",
+                        "on-secondary-fixed": "#1e1b16",
+                        "paper-white": "#FAFAF8",
+                        "on-surface-variant": "#444748",
+                        "ink-black": "#1A1A1A",
+                        "divider-grey": "#E5E5E1",
+                        "inverse-on-surface": "#f1f1ef",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e8e8e6",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#101d29",
+                        "surface": "#f9f9f7",
+                        "secondary-fixed": "#e9e1d8",
+                        "surface-variant": "#e2e3e1",
+                        "on-secondary-fixed-variant": "#4b463f",
+                        "on-error": "#ffffff",
+                        "surface-container": "#eeeeec",
+                        "error": "#ba1a1a",
+                        "primary-container": "#1c1b1b",
+                        "error-container": "#ffdad6",
+                        "outline": "#747878",
+                        "primary": "#000000",
+                        "on-tertiary-fixed-variant": "#3b4856",
+                        "outline-variant": "#c4c7c7",
+                        "tertiary-fixed-dim": "#bac8d9",
+                        "on-primary-fixed": "#1c1b1b"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "section-gap": "160px",
+                        "margin-mobile": "20px",
+                        "container-max-width": "1140px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "80px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["Libre Caslon Text", "serif"],
+                        "label-caps": ["Hanken Grotesk", "sans-serif"],
+                        "headline-md": ["Libre Caslon Text", "serif"],
+                        "headline-sm": ["Libre Caslon Text", "serif"],
+                        "body-lg": ["Hanken Grotesk", "sans-serif"],
+                        "display-lg-mobile": ["Libre Caslon Text", "serif"],
+                        "body-md": ["Hanken Grotesk", "sans-serif"]
+                    },
+                    fontSize: {
+                        "display-lg": ["64px", { lineHeight: "72px", letterSpacing: "-0.02em", fontWeight: "400" }],
+                        "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.1em", fontWeight: "600" }],
+                        "headline-md": ["32px", { lineHeight: "40px", fontWeight: "400" }],
+                        "headline-sm": ["24px", { lineHeight: "32px", fontWeight: "400" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "display-lg-mobile": ["40px", { lineHeight: "48px", letterSpacing: "-0.01em", fontWeight: "400" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&amp;family=Libre+Caslon+Text:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1a1c1b",
+                        "warm-taupe": "#8C867E",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "surface-tint": "#5f5e5e",
+                        "inverse-surface": "#2f3130",
+                        "secondary-container": "#e6ded5",
+                        "on-secondary-container": "#67625a",
+                        "on-surface": "#1a1c1b",
+                        "background": "#f9f9f7",
+                        "on-tertiary-container": "#788595",
+                        "secondary": "#635e56",
+                        "inverse-primary": "#c8c6c5",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#101d29",
+                        "on-primary-container": "#858383",
+                        "surface-dim": "#dadad8",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f4f4f2",
+                        "tertiary": "#000000",
+                        "surface-bright": "#f9f9f7",
+                        "on-primary-fixed-variant": "#474746",
+                        "secondary-fixed-dim": "#cdc5bc",
+                        "surface-container-highest": "#e2e3e1",
+                        "tertiary-fixed": "#d6e4f5",
+                        "slate-blue": "#5E6B7A",
+                        "primary-fixed": "#e5e2e1",
+                        "on-secondary-fixed": "#1e1b16",
+                        "paper-white": "#FAFAF8",
+                        "on-surface-variant": "#444748",
+                        "ink-black": "#1A1A1A",
+                        "divider-grey": "#E5E5E1",
+                        "inverse-on-surface": "#f1f1ef",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e8e8e6",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#101d29",
+                        "surface": "#f9f9f7",
+                        "secondary-fixed": "#e9e1d8",
+                        "surface-variant": "#e2e3e1",
+                        "on-secondary-fixed-variant": "#4b463f",
+                        "on-error": "#ffffff",
+                        "surface-container": "#eeeeec",
+                        "error": "#ba1a1a",
+                        "primary-container": "#1c1b1b",
+                        "error-container": "#ffdad6",
+                        "outline": "#747878",
+                        "primary": "#000000",
+                        "on-tertiary-fixed-variant": "#3b4856",
+                        "outline-variant": "#c4c7c7",
+                        "tertiary-fixed-dim": "#bac8d9",
+                        "on-primary-fixed": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "160px",
+                        "margin-mobile": "20px",
+                        "container-max-width": "1140px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "display-lg": [
+                            "Libre Caslon Text"
+                        ],
+                        "label-caps": [
+                            "Hanken Grotesk"
+                        ],
+                        "headline-md": [
+                            "Libre Caslon Text"
+                        ],
+                        "headline-sm": [
+                            "Libre Caslon Text"
+                        ],
+                        "body-lg": [
+                            "Hanken Grotesk"
+                        ],
+                        "display-lg-mobile": [
+                            "Libre Caslon Text"
+                        ],
+                        "body-md": [
+                            "Hanken Grotesk"
+                        ]
+                    },
+                    "fontSize": {
+                        "display-lg": [
+                            "64px",
+                            {
+                                "lineHeight": "72px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "label-caps": [
+                            "12px",
+                            {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.1em",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "headline-md": [
+                            "32px",
+                            {
+                                "lineHeight": "40px",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "headline-sm": [
+                            "24px",
+                            {
+                                "lineHeight": "32px",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "body-lg": [
+                            "18px",
+                            {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "display-lg-mobile": [
+                            "40px",
+                            {
+                                "lineHeight": "48px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "body-md": [
+                            "16px",
+                            {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                            }
+                        ]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-paper-white text-ink-black font-body-md min-h-screen flex flex-col antialiased selection:bg-slate-blue selection:text-paper-white relative">
+    <!-- Styles injected via root variables for specific manual CSS overrides -->
+    <style>
+        :root {
+            --color-ink-black: #1A1A1A;
+            --color-warm-taupe: #8C867E;
+            --color-slate-blue: #5E6B7A;
+            --color-paper-white: #FAFAF8;
+            --color-divider: #E5E5E1;
+        }
+    </style>
+    <!-- Minimal Header / Navigation Suppression (Transactional Page) -->
+    <header
+        class="w-full fixed top-0 left-0 flex justify-between items-center px-margin-mobile md:px-margin-desktop   z-50 bg-paper-white/90 backdrop-blur-sm">
+        <!-- TopNavBar -->
+        <nav
+            class="w-full sticky top-0 bg-background/90 backdrop-blur-sm border-b border-divider-grey z-50 transition-all duration-300 ease-in-out">
+            <div
+                class="max-w-container-max-width mx-auto flex justify-between items-center px-margin-mobile md:px-margin-desktop py-6">
+                <a class="font-display-lg text-headline-sm tracking-tight text-ink-black hover:text-warm-taupe transition-colors"
+                    href="index.html"><img src="logo.png" alt="" width="280px"></a>
+                <div class="hidden md:flex space-x-8 items-center font-label-caps text-label-caps uppercase"
+                    style="font-size:14px; letter-spacing:0.1em; font-weight:600;">
+                    <a class="text-warm-taupe hover:text-ink-black transition-colors" href="index.html#the-problem">The
+                        Problem</a>
+                    <a class="text-warm-taupe hover:text-ink-black transition-colors" href="index.html#about">About</a>
+                    <a class="text-warm-taupe hover:text-ink-black transition-colors"
+                        href="index.html#methodology">Methodology</a>
+                    <a class="text-warm-taupe hover:text-ink-black transition-colors"
+                        href="index.html#testimonials">Testimonials</a>
+                    <a class="bg-ink-black text-paper-white px-6 py-3 hover:bg-warm-taupe transition-colors duration-300 ml-4"
+                        href="booking.html">Book a Call</a>
+                </div>
+                <!-- Mobile Menu Toggle -->
+                <button class="md:hidden text-ink-black p-2 focus:outline-none">
+                    <span class="material-symbols-outlined text-2xl">menu</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <!-- Main Canvas -->
+    <main
+        class="flex-grow flex items-center justify-center w-full px-margin-mobile md:px-margin-desktop py-[120px] md:py-section-gap">
+        <div class="max-w-[720px] w-full mx-auto relative">
+            <!-- Booking Form Section -->
+            <section class="w-full fade-in" id="booking-section">
+                <header class="mb-16 md:mb-24">
+                    <h1
+                        class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6">
+                        Request a Strategy Call
+                    </h1>
+                    <p class="font-body-lg text-body-lg text-warm-taupe max-w-[540px]">
+                        Let us begin the conversation. Please provide your details below, and my team will be in touch
+                        to arrange a suitable time.
+                    </p>
+                </header>
+                <form class="space-y-12" id="appointment-form">
+                    <!-- Row 1: Name & Email -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-gutter">
+                        <div class="flex flex-col gap-2">
+                            <label class="font-label-caps text-label-caps text-warm-taupe uppercase tracking-widest"
+                                for="fullName">Full Name</label>
+                            <input
+                                class="input-minimal w-full border-0 border-b border-divider-grey bg-transparent py-3 px-0 font-body-lg text-body-lg text-ink-black placeholder:text-surface-dim transition-colors duration-300"
+                                id="fullName" name="fullName" placeholder="Jane Doe" required="" type="text" />
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label class="font-label-caps text-label-caps text-warm-taupe uppercase tracking-widest"
+                                for="email">Email Address</label>
+                            <input
+                                class="input-minimal w-full border-0 border-b border-divider-grey bg-transparent py-3 px-0 font-body-lg text-body-lg text-ink-black placeholder:text-surface-dim transition-colors duration-300"
+                                id="email" name="email" placeholder="jane@company.com" required="" type="email" />
+                        </div>
+                    </div>
+                    <!-- Row 2: Phone & Organisation -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-gutter">
+                        <div class="flex flex-col gap-2">
+                            <label class="font-label-caps text-label-caps text-warm-taupe uppercase tracking-widest"
+                                for="phone">Phone Number <span class="text-surface-dim ml-1">(Optional)</span></label>
+                            <input
+                                class="input-minimal w-full border-0 border-b border-divider-grey bg-transparent py-3 px-0 font-body-lg text-body-lg text-ink-black placeholder:text-surface-dim transition-colors duration-300"
+                                id="phone" name="phone" placeholder="+44 7700 900077" type="tel" />
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label class="font-label-caps text-label-caps text-warm-taupe uppercase tracking-widest"
+                                for="organisation">Organisation</label>
+                            <input
+                                class="input-minimal w-full border-0 border-b border-divider-grey bg-transparent py-3 px-0 font-body-lg text-body-lg text-ink-black placeholder:text-surface-dim transition-colors duration-300"
+                                id="organisation" name="organisation" placeholder="Your Company Ltd" required=""
+                                type="text" />
+                        </div>
+                    </div>
+                    <!-- Row 3: Goals -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-label-caps text-label-caps text-warm-taupe uppercase tracking-widest"
+                            for="goals">What are you hoping to achieve?</label>
+                        <textarea
+                            class="input-minimal w-full border-0 border-b border-divider-grey bg-transparent py-3 px-0 font-body-lg text-body-lg text-ink-black placeholder:text-surface-dim transition-colors duration-300 resize-none"
+                            id="goals" name="goals" placeholder="Briefly describe the context of your inquiry..."
+                            required="" rows="4"></textarea>
+                    </div>
+                    <!-- Row 4: Preferences -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-gutter pt-4">
+                        <!-- Contact Method -->
+                        <div class="flex flex-col gap-4">
+                            <label
+                                class="font-label-caps text-label-caps text-warm-taupe uppercase tracking-widest">Preferred
+                                Contact Method</label>
+                            <div class="flex gap-8">
+                                <label class="flex items-center cursor-pointer group">
+                                    <input checked="" name="contactMethod" type="radio" value="email" />
+                                    <span
+                                        class="font-body-md text-body-md text-ink-black ml-1 group-hover:text-warm-taupe transition-colors">Email</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer group">
+                                    <input name="contactMethod" type="radio" value="call" />
+                                    <span
+                                        class="font-body-md text-body-md text-ink-black ml-1 group-hover:text-warm-taupe transition-colors">Call</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Time Slot -->
+                        <div class="flex flex-col gap-2">
+                            <label class="font-label-caps text-label-caps text-warm-taupe uppercase tracking-widest"
+                                for="timeSlot">Preferred Time Slot</label>
+                            <select
+                                class="input-minimal w-full border-0 border-b border-divider-grey bg-transparent py-3 px-0 font-body-lg text-body-lg text-ink-black cursor-pointer transition-colors duration-300 focus:ring-0"
+                                id="timeSlot" name="timeSlot">
+                                <option class="text-ink-black" value="morning">Morning (9am - 12pm)</option>
+                                <option class="text-ink-black" value="afternoon">Afternoon (1pm - 5pm)</option>
+                                <option class="text-ink-black" value="evening">Evening (After 5pm)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Submit Action -->
+                    <div
+                        class="pt-8 flex flex-col md:flex-row items-center gap-6 justify-between border-t border-divider-grey mt-12">
+                        <p class="font-label-caps text-label-caps text-warm-taupe max-w-[300px]">
+                            By requesting a call, you agree to our privacy policy regarding data handling.
+                        </p>
+                        <button
+                            class="w-full md:w-auto bg-ink-black text-paper-white py-4 px-10 font-label-caps text-label-caps uppercase tracking-widest hover:bg-slate-blue transition-colors duration-300 flex items-center justify-center gap-3 group"
+                            type="submit">
+                            <span>Request My Strategy Call</span>
+                            <span
+                                class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform duration-300">arrow_forward</span>
+                        </button>
+                    </div>
+                </form>
+            </section>
+            <!-- Success State Section (Hidden by default) -->
+            <section class="w-full hidden flex-col items-center justify-center text-center py-24" id="success-section">
+                <div
+                    class="w-16 h-16 rounded-full border border-divider-grey flex items-center justify-center mb-8 bg-surface-container-low">
+                    <span class="material-symbols-outlined text-[32px] text-warm-taupe">check_circle</span>
+                </div>
+                <h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6">
+                    Request Received
+                </h2>
+                <p class="font-body-lg text-body-lg text-warm-taupe max-w-[480px] mx-auto mb-12">
+                    Thank you for reaching out. My team has received your request and will be in touch shortly via your
+                    preferred contact method to finalize the schedule.
+                </p>
+                <a class="inline-flex items-center gap-2 border border-ink-black py-4 px-8 font-label-caps text-label-caps uppercase tracking-widest hover:bg-ink-black hover:text-paper-white transition-all duration-300"
+                    href="index.html">
+                    Return to Home
+                </a>
+            </section>
+        </div>
+
+    </main>
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer style="background:#FAFAF8; border-top:1px solid var(--color-divider); padding:60px 80px;"
+        class="px-5 md:px-20">
+        <div style="max-width:1140px; margin:0 auto;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;">
+                <span style="font-family:'Libre Caslon Text',serif; font-size:20px; color:var(--color-ink-black);"><img
+                        src="logo.png" alt="" width="280px"></a></span>
+                <div style="display:flex; gap:32px; flex-wrap:wrap;">
+                    <a href="https://www.linkedin.com/in/sarah-lock-she-her-icf-master-certified-coach-mcc-1a624b4a/"
+                        target="_blank"
+                        style="font-family:'Hanken Grotesk',sans-serif; font-size:13px; color:var(--color-warm-taupe); text-decoration:none; transition:color 0.3s;"
+                        onmouseover="this.style.color='#1A1A1A'" onmouseout="this.style.color='#8C867E'">LinkedIn</a>
+                    <a href="https://www.instagram.com/sarahlockleadership/" target="_blank"
+                        style="font-family:'Hanken Grotesk',sans-serif; font-size:13px; color:var(--color-warm-taupe); text-decoration:none; transition:color 0.3s;"
+                        onmouseover="this.style.color='#1A1A1A'" onmouseout="this.style.color='#8C867E'">Instagram</a>
+                    <a href="https://twitter.com/LeadershipSarah" target="_blank"
+                        style="font-family:'Hanken Grotesk',sans-serif; font-size:13px; color:var(--color-warm-taupe); text-decoration:none; transition:color 0.3s;"
+                        onmouseover="this.style.color='#1A1A1A'" onmouseout="this.style.color='#8C867E'">Twitter</a>
+                    <a href="mailto:me@sarahlockleadership.com"
+                        style="font-family:'Hanken Grotesk',sans-serif; font-size:13px; color:var(--color-warm-taupe); text-decoration:none; transition:color 0.3s;"
+                        onmouseover="this.style.color='#1A1A1A'" onmouseout="this.style.color='#8C867E'">Contact</a>
+                </div>
+            </div>
+            <div style="margin-top:40px; padding-top:24px; border-top:1px solid var(--color-divider);">
+                <p style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; color:rgba(140,134,126,0.6);">
+                    © 2025 Sarah Lock Leadership · Scotland, UK · me@sarahlockleadership.com</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Micro-interaction Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('appointment-form');
+            const bookingSection = document.getElementById('booking-section');
+            const successSection = document.getElementById('success-section');
+
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    // Simulate form submission delay
+                    const btn = form.querySelector('button[type="submit"]');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span>';
+                    btn.disabled = true;
+
+                    setTimeout(() => {
+                        // Hide form, show success
+                        bookingSection.classList.add('hidden');
+                        successSection.classList.remove('hidden');
+                        successSection.classList.add('fade-in');
+
+                        // Scroll to top of the container for a clean view
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 800);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
